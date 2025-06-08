@@ -4,6 +4,15 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    url: 'https://gitlab.com/sreejayadav65-group/project1.git',
+                    branch: 'main', // or your actual branch
+                    credentialsId: 'gitlab-creds' // Replace with your actual ID
+                )
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
